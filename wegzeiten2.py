@@ -1,6 +1,6 @@
 import pandas as pd
 import geopandas as gpd
-from geopy.geocoders import Nominatim
+from geopy.geocoders import Nominatim, Photon
 from shapely import MultiLineString
 from datetime import datetime, timedelta
 import streamlit as st
@@ -164,7 +164,7 @@ endort = st.text_input(label='Zielort eingeben')
 if submitted:
     if startort and endort:
         # ------------- Geocoding: von Ortsnamen zu Koordinaten 
-        geolocator = Nominatim(user_agent="my_app_nushejan1", timeout=20)
+        geolocator = Photon(user_agent="weshalbhfsdb", timeout=20)
         # store coords (dir(startcoords) für alle methods)
         startcoords = geolocator.geocode(startort)
         startx, starty = startcoords.longitude, startcoords.latitude
@@ -331,6 +331,7 @@ if submitted:
             st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
     else:
         st.warning("Please enter both start and end locations")
+
 
 
 
