@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import branca.colormap as cm
 
-
+st.title('Vergleich Fahrzeiten: Auto vs. ÖV')
 
 def plot_folium(gdf, columncolor = None, colormap='RdYlBu_r', hovercolumnlist = None):
     '''gdf darf verschiedene geometrien haben, aber geometrycollections werden rausgeworfen hier'''
@@ -249,7 +249,7 @@ if submitted:
         miv_duration = response_miv["routes"][0]["duration"]
         miv_distance = response_miv["routes"][0]["distance"]
         #print(f"==>> miv_duration: {miv_duration}")
-        st.write(f"==>> miv_duration: {miv_duration}")
+        #st.write(f"==>> miv_duration: {miv_duration}")
         # miv_distance = response_miv["routes"][0]["distance"]
         
         
@@ -257,10 +257,10 @@ if submitted:
         hours, minutes, seconds = map(int, öv_duration[3:].split(':'))
         öv_duration_time = timedelta(hours=hours, minutes=minutes, seconds=seconds)
         #print(f"==>> öv_duration_time: {öv_duration_time}")
-        st.write(f"==>> öv_duration_time: {öv_duration_time}")
+        st.write(f"Fahrzeit ÖV: {öv_duration_time}")
         miv_duration_time = timedelta(seconds = miv_duration)
         #print(f"==>> miv_duration_time: {miv_duration_time}")
-        st.write(f"==>> miv_duration_time: {miv_duration_time}")
+        st.write(f"Fahrzeit Auto: {miv_duration_time}")
         
         
         # ------------- Messages ausgeben
@@ -332,6 +332,7 @@ if submitted:
             st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
     else:
         st.warning("Please enter both start and end locations")
+
 
 
 
