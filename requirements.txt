@@ -6,3 +6,7 @@ streamlit
 streamlit-folium
 datetime
 shapely
+requests
+matplotlib
+numpy
+branca
