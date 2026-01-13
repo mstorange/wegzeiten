@@ -312,7 +312,7 @@ if submitted:
             dauer = f'{round(öv_duration_time.seconds/60, 1)} min'
             övweg['Route'] = [route]
             övweg['Dauer'] = [dauer]
-            m2 = plot_folium(övweg, hovercolumnlist=['route'])
+            m2 = plot_folium(övweg, hovercolumnlist=['Route','Dauer'])
             st_data = st_folium(m2, height = 500, width = 1300, returned_objects=[])
         
         # ---------------- Karte MIV
@@ -331,6 +331,7 @@ if submitted:
             st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
     else:
         st.warning("Please enter both start and end locations")
+
 
 
 
