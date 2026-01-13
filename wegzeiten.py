@@ -148,10 +148,8 @@ def plot_folium(gdf, columncolor = None, colormap='RdYlBu_r', hovercolumnlist = 
     return m
 
 
-startort = "Dietlikon"
-# startort = st.text_input()
-endort = "Aadorf"
-# endort = st.text_input()
+startort = st.text_input()
+endort = st.text_input()
 # time = "08:30"
 
 # ------------- Geocoding: von Ortsnamen zu Koordinaten 
@@ -321,4 +319,5 @@ else:
     gdf['Dauer'] = [dauer]
     gdf['Distanz'] = [dist]
     m = f.plot_folium(gdf, hovercolumnlist=['Route', 'Dauer', 'Distanz'])
+
 	st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
