@@ -5,6 +5,12 @@ from geopy.geocoders import Nominatim
 from shapely import MultiLineString
 from datetime import datetime, timedelta
 import streamlit as st
+import requests
+import folium
+from streamlit_folium import st_folium
+import matplotlib.pyplot as plt
+import numpy as np
+import branca.colormap as cm
 
 def plot_folium(gdf, columncolor = None, colormap='RdYlBu_r', hovercolumnlist = None):
     '''gdf darf verschiedene geometrien haben, aber geometrycollections werden rausgeworfen hier'''
@@ -320,5 +326,6 @@ else:
     gdf['Dauer'] = [dauer]
     gdf['Distanz'] = [dist]
     m = f.plot_folium(gdf, hovercolumnlist=['Route', 'Dauer', 'Distanz'])
-	st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
+    st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
+
 
