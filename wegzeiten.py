@@ -173,6 +173,7 @@ response_stationfinder_start = requests.get(
         'y':starty
     }
 ).json()
+
 response_stationfinder_end = requests.get(
     "http://transport.opendata.ch/v1/locations",
     params={
@@ -308,8 +309,8 @@ if fortbewegungsmittel == 'öv':
 
 # ---------------- Karte MIV
 else:
-    path = response_miv['routes'][0]['geometry']['coordinates']
-    lines = MultiLineString([path])
+	path = response_miv['routes'][0]['geometry']['coordinates']
+    lines = MultiLineString([path]) 
     # lines
     gdf = gpd.GeoDataFrame(geometry=[lines], crs = 'EPSG:4326')
     route = f'{startort} -> {endort}'
@@ -319,5 +320,5 @@ else:
     gdf['Dauer'] = [dauer]
     gdf['Distanz'] = [dist]
     m = f.plot_folium(gdf, hovercolumnlist=['Route', 'Dauer', 'Distanz'])
-
 	st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
+
