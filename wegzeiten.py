@@ -311,7 +311,7 @@ if fortbewegungsmittel == 'öv':
     övweg['Route'] = [route]
     övweg['Dauer'] = [dauer]
     m2 = f.plot_folium(övweg, hovercolumnlist=['route'])
-	st_data = st_folium(m2, height = 500, width = 1300, returned_objects=[])
+	#st_data = st_folium(m2, height = 500, width = 1300, returned_objects=[])
 
 # ---------------- Karte MIV
 else:
@@ -326,6 +326,7 @@ else:
     gdf['Dauer'] = [dauer]
     gdf['Distanz'] = [dist]
     m = f.plot_folium(gdf, hovercolumnlist=['Route', 'Dauer', 'Distanz'])
-    st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
+    #st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
+
 
 
