@@ -164,7 +164,7 @@ endort = st.text_input(label='Zielort eingeben')
 if submitted:
     if startort and endort:
         # ------------- Geocoding: von Ortsnamen zu Koordinaten 
-        geolocator = Photon(user_agent="weshalbhfsdb", timeout=20)
+        geolocator = Photon(user_agent="esrfhdsfer", timeout=20)
         # store coords (dir(startcoords) für alle methods)
         startcoords = geolocator.geocode(startort)
         startx, starty = startcoords.longitude, startcoords.latitude
@@ -309,7 +309,7 @@ if submitted:
             lines2 = MultiLineString([alle_koordinaten])
             övweg = gpd.GeoDataFrame(geometry=[lines2], crs = 'EPSG:4326')
             route = f'{startort} -> {endort}'
-            dauer = f'{round(öv_duration/60, 1)} min'
+            dauer = f'{round(öv_duration_time.seconds/60, 1)} min'
             övweg['Route'] = [route]
             övweg['Dauer'] = [dauer]
             m2 = f.plot_folium(övweg, hovercolumnlist=['route'])
@@ -331,6 +331,7 @@ if submitted:
             st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
     else:
         st.warning("Please enter both start and end locations")
+
 
 
 
