@@ -168,10 +168,11 @@ if submitted:
         # store coords (dir(startcoords) für alle methods)
         startcoords = geolocator.geocode(startort)
         startx, starty = startcoords.longitude, startcoords.latitude
-        print('gefundene Adresse: ', startcoords.address)
-        # st.write('gefundene Adresse: ', startcoords.address)
+        #print('gefundene Adresse: ', startcoords.address)
+        st.write('gefundener Start: ', startcoords.address)
         endcoords = geolocator.geocode(endort)
         endx, endy = endcoords.longitude, endcoords.latitude
+        st.write('gefundenes Ziel: ', endcoords.address)
         
         
         # ------------ ÖV: Stationen finden
@@ -215,12 +216,12 @@ if submitted:
         
         startplatz_json = find_next_station(response=response_stationfinder_start)
         startplatz = startplatz_json['name']
-        print('Startplatz: ', startplatz)
-        # st.write('Startplatz: ', startplatz)
+        #print('Startplatz: ', startplatz)
+        st.write('Startplatz: ', startplatz)
         endplatz_json = find_next_station(response=response_stationfinder_end)
         endplatz = endplatz_json['name']
-        print('Endplatz: ', endplatz)
-        # st.write('Endplatz: ', endplatz)
+        #print('Endplatz: ', endplatz)
+        st.write('Endplatz: ', endplatz)
         
         
         # -------------- ÖV-Wegzeit berechnen
@@ -247,41 +248,41 @@ if submitted:
         }).json()
         miv_duration = response_miv["routes"][0]["duration"]
         miv_distance = response_miv["routes"][0]["distance"]
-        print(f"==>> miv_duration: {miv_duration}")
-        # st.write(f"==>> miv_duration: {miv_duration}")
+        #print(f"==>> miv_duration: {miv_duration}")
+        st.write(f"==>> miv_duration: {miv_duration}")
         # miv_distance = response_miv["routes"][0]["distance"]
         
         
         # ------------- Wegzeiten vergleichen und entsprechende Karte plotten
         hours, minutes, seconds = map(int, öv_duration[3:].split(':'))
         öv_duration_time = timedelta(hours=hours, minutes=minutes, seconds=seconds)
-        print(f"==>> öv_duration_time: {öv_duration_time}")
-        # st.write(f"==>> öv_duration_time: {öv_duration_time}")
+        #print(f"==>> öv_duration_time: {öv_duration_time}")
+        st.write(f"==>> öv_duration_time: {öv_duration_time}")
         miv_duration_time = timedelta(seconds = miv_duration)
-        print(f"==>> miv_duration_time: {miv_duration_time}")
-        # st.write(f"==>> miv_duration_time: {miv_duration_time}")
+        #print(f"==>> miv_duration_time: {miv_duration_time}")
+        st.write(f"==>> miv_duration_time: {miv_duration_time}")
         
         
         # ------------- Messages ausgeben
         if öv_duration_time < timedelta(seconds=30*60):
-            print(f'Die Zugfahrt dauert lediglich {öv_duration_time} min und somit kannst du den ÖV nehmen.')
+            st.write(f'Die Zugfahrt dauert lediglich {öv_duration_time} min und somit kannst du den ÖV nehmen.')
             fortbewegungsmittel = 'öv'
         elif öv_duration_time > miv_duration_time:
             dif = (öv_duration_time-miv_duration_time).seconds/60
-            print(f'Du bist mit dem Auto rund {round(dif, 1)} min schneller.')
+            st.write(f'Du bist mit dem Auto rund {round(dif, 1)} min schneller.')
         
             if öv_duration_time > 1.5*miv_duration_time:
                 faktor = öv_duration_time.seconds/miv_duration_time.seconds
-                print(f'Die Zugfahrt dauert {round(faktor,1)} so lange wie die Autofahrt. Somit darfst du mit dem Auto fahren.')
+                st.write(f'Die Zugfahrt dauert {round(faktor,1)} so lange wie die Autofahrt. Somit darfst du mit dem Auto fahren.')
                 fortbewegungsmittel = 'miv'
             else:
                 faktor = öv_duration_time.seconds/miv_duration_time.seconds
-                print(f'Die Zugfahrt dauert nur {round(faktor,1)} so lange wie die Autofahrt. Somit musst du den ÖV nehmen, du armes Schwein haha.')
+                st.write(f'Die Zugfahrt dauert nur {round(faktor,1)} so lange wie die Autofahrt. Somit musst du den ÖV nehmen, du armes Schwein haha.')
                 fortbewegungsmittel = 'öv'
         
         else:
             dif = (miv_duration_time-öv_duration_time).seconds/60
-            print(f'Du bist mit dem ÖV rund {dif} min schneller. Daher nimmst du logischerweise den ÖV.')
+            st.write(f'Du bist mit dem ÖV rund {dif} min schneller. Daher nimmst du logischerweise den ÖV.')
             fortbewegungsmittel = 'öv'
         
         # ------------------- Karte ÖV
@@ -331,6 +332,7 @@ if submitted:
             st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
     else:
         st.warning("Please enter both start and end locations")
+
 
 
 
