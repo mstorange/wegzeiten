@@ -155,11 +155,11 @@ def plot_folium(gdf, columncolor = None, colormap='RdYlBu_r', hovercolumnlist = 
     return m
 
 
-
+submitted = st.button("Anwenden")
 startort = st.text_input(label='Startort eingeben')
 endort = st.text_input(label='Zielort eingeben')
 # time = "08:30"
-submitted = st.form_submit_button("Anwenden")
+
 
 if submitted:
     if startort and endort:
@@ -331,4 +331,5 @@ if submitted:
             st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
     else:
         st.warning("Please enter both start and end locations")
+
 
