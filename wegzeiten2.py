@@ -231,7 +231,7 @@ if submitted:
                 "from": startplatz,
                 "to": endplatz,
                 #"via": viaort,
-                "time": zeit
+                #"time": zeit
             }
         ).json()
         # Print the whole response to see what it looks like
@@ -331,6 +331,7 @@ if submitted:
             st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
     else:
         st.warning("Please enter both start and end locations")
+
 
 
 
