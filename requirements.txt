@@ -3,5 +3,6 @@ folium
 geopandas
 geopy
 streamlit
+streamlit-folium
 datetime
 shapely
