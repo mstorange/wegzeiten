@@ -217,11 +217,11 @@ if submitted:
         startplatz_json = find_next_station(response=response_stationfinder_start)
         startplatz = startplatz_json['name']
         #print('Startplatz: ', startplatz)
-        st.write('Startplatz: ', startplatz)
+        st.write('Start ÖV-Station: ', startplatz)
         endplatz_json = find_next_station(response=response_stationfinder_end)
         endplatz = endplatz_json['name']
         #print('Endplatz: ', endplatz)
-        st.write('Endplatz: ', endplatz)
+        st.write('Ziel ÖV-Station: ', endplatz)
         
         
         # -------------- ÖV-Wegzeit berechnen
@@ -273,16 +273,16 @@ if submitted:
         
             if öv_duration_time > 1.5*miv_duration_time:
                 faktor = öv_duration_time.seconds/miv_duration_time.seconds
-                st.write(f'Die Zugfahrt dauert {round(faktor,1)} so lange wie die Autofahrt. Somit darfst du mit dem Auto fahren.')
+                st.write(f'Die Zugfahrt dauert {round(faktor,1)} mal so lange wie die Autofahrt. Somit darfst du mit dem Auto fahren.')
                 fortbewegungsmittel = 'miv'
             else:
                 faktor = öv_duration_time.seconds/miv_duration_time.seconds
-                st.write(f'Die Zugfahrt dauert nur {round(faktor,1)} so lange wie die Autofahrt. Somit musst du den ÖV nehmen, du armes Schwein haha.')
+                st.write(f'Die Zugfahrt dauert nur {round(faktor,1)} mal so lange wie die Autofahrt. Somit musst du den ÖV nehmen.')
                 fortbewegungsmittel = 'öv'
         
         else:
             dif = (miv_duration_time-öv_duration_time).seconds/60
-            st.write(f'Du bist mit dem ÖV rund {dif} min schneller. Daher nimmst du logischerweise den ÖV.')
+            st.write(f'Du bist mit dem ÖV rund {dif} min schneller. Daher nimmst du vorzugsweise den ÖV.')
             fortbewegungsmittel = 'öv'
         
         # ------------------- Karte ÖV
@@ -332,6 +332,7 @@ if submitted:
             st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
     else:
         st.warning("Please enter both start and end locations")
+
 
 
 
