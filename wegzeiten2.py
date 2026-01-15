@@ -261,6 +261,7 @@ if submitted:
         miv_duration_time = timedelta(seconds = miv_duration)
         #print(f"==>> miv_duration_time: {miv_duration_time}")
         st.write(f"Fahrzeit Auto: {miv_duration_time}")
+       
         
         
         # ------------- Messages ausgeben
@@ -273,7 +274,7 @@ if submitted:
         
             if öv_duration_time > 1.5*miv_duration_time:
                 faktor = öv_duration_time.seconds/miv_duration_time.seconds
-                st.write(f'Die Zugfahrt dauert {round(faktor,1)} mal so lange wie die Autofahrt. Somit darfst du mit dem Auto fahren.')
+                st.write(f'Die Zugfahrt dauert {round(faktor,1)} mal so lange wie die Autofahrt. Somit darfst du mit dem Auto fahren. Die Fahrdistanz beträgt ungefähr {round(miv_distance/1000,1)} km')
                 fortbewegungsmittel = 'miv'
             else:
                 faktor = öv_duration_time.seconds/miv_duration_time.seconds
@@ -332,6 +333,7 @@ if submitted:
             st_data = st_folium(m, height = 500, width = 1300, returned_objects=[])
     else:
         st.warning("Please enter both start and end locations")
+
 
 
 
