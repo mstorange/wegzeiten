@@ -2,7 +2,6 @@ pandas
 folium
 geopandas
 geopy
-streamlit
 streamlit-folium
 datetime
 shapely
@@ -10,3 +9,5 @@ requests
 matplotlib
 numpy
 branca
+streamlit>=1.32
+altair>=5,<6
